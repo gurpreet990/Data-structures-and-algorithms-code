@@ -1,33 +1,47 @@
 #include <iostream>
 using namespace std;
-int linear_search(const int arr[],int n,int x){
-    for(int i=0;i<n;i++){
+//int insertion(int arr[],int n,int x,int pos,int cap){
+//    if(cap<n) {
+//        return -1;
+//    }
+//        int idx = pos-1;
+//        for(int i=n-1;i>=idx;i--){
+//            arr[i+1]=arr[i];
+//        }
+//        arr[idx]=x;
+//        return n+1;
+//}
+int deletion(int arr[],int n,int x){
+    int i;
+    for(i=0;i<n;i++){
         if(arr[i]==x){
-            return i;
+            break;
         }
     }
-    return -1;
-}
-int Binary_search(int arr[],int n,int x){
-    int low = 0,high = n-1;
-    while(low<high){
-        int mid = (low+high)/2;
-        if(arr[mid]==x){
-            return mid;
+        if(i==n){
+            return n;
         }
-        else if(arr[mid]<x){
-            low = mid+1;
-        }
-        else if(arr[mid]>x){
-            high = mid-1;
-        }
+        for(int j=i;j<n-1;j++){
+            arr[j]=arr[j+1];
     }
-    return -1;
+    return n-1;
 }
 int main() {
-    int arr[]={1,2,3,4,5};
+    int arr[7]={1,2,3,4,5};
     int n = 5;
-    int x = 6;
-    cout<<Binary_search(arr,n,x);
+//    int cap = 7;
+//    int pos = 3;
+    int x = 30;
+    //cout<<"\narray before insertion\n";
+    cout<<"array before deletion\n";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    n = deletion(arr,n,x);
+    //cout<<"\narray after insertion\n";
+    cout<<"\narray after deletion\n";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
